@@ -68,8 +68,6 @@ nnoremap tj  :<C-u>tag<CR>  " 「進む」
 nnoremap tk  :<C-u>pop<CR>  " 「戻る」
 nnoremap tl  :<C-u>tags<CR> " 履歴一覧
 "------------------------------------------------------
-
-
 "color
 set t_Co=256
 filetype plugin indent on
