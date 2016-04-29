@@ -72,17 +72,5 @@ nnoremap tl  :<C-u>tags<CR> " 履歴一覧
 
 "color
 set t_Co=256
-"プラグイン設定
-if &compatible
-    set nocompatible
-endif
-set runtimepath^=~/.vim/repos/github.com/Shougo/dein.vim
-
-call dein#begin(expand('~/.cache/dein'))
-call dein#add('Shougo/neocomplete.vim')
-call dein#end()
-if dein#check_install()
-    call dein#install()
-endif
 filetype plugin indent on
 syntax enable   
