@@ -4,6 +4,7 @@
 "バックアップ設定
 set directory=$HOME/vimbackup/tmp
 set backupdir=$HOME/vimbackup/backupfile
+:set noundofile
 "画面設定
 set number         " 行番号を表示する
 set cursorline     " カーソル行の背景色を変える
