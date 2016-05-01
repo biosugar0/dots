@@ -1,6 +1,11 @@
 "--------------------
 "" 基本的な設定
 "--------------------
+"python3設定
+let $PATH = "~/.pyenv/shims:".$PATH
+let $PYTHON3_DLL="/Users/YUTOKIMURA/.pyenv/versions/3.5.1/lib/libpython3.5m.dylib"
+set pythondll=/Users/YUTOKIMURA/.pyenv/versions/2.7.11/lib/libpython2.7.dylib
+
 "バックアップ設定
 set directory=$HOME/vimbackup/tmp
 set backupdir=$HOME/vimbackup/backupfile
@@ -69,6 +74,54 @@ nnoremap tj  :<C-u>tag<CR>  " 「進む」
 nnoremap tk  :<C-u>pop<CR>  " 「戻る」
 nnoremap tl  :<C-u>tags<CR> " 履歴一覧
 "------------------------------------------------------
+"plugin設定
+let g:jedi#force_py_version = 3
+" ---------- dein.vim 設定 ----------
+" ディレクトリ設定
+" プラグインが実際にインストールされるディレクトリ
+let s:dein_dir = expand('~/.cache/dein')
+" dein.vim 本体
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+let g:rc_dir = expand('~/.vim/rc')
+" dein.vim がないときgit clone
+if &runtimepath !~# '/dein.vim'
+    if !isdirectory(s:dein_repo_dir)
+        execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+    endif
+        execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
+    endif
+" 設定開始
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir)
+
+  " プラグインリストを収めた TOML ファイル
+  let s:toml      = g:rc_dir . '/dein.toml'
+  let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
+
+  " TOML を読み込み、キャッシュしておく
+  call dein#load_toml(s:toml,      {'lazy': 0})
+  call dein#load_toml(s:lazy_toml, {'lazy': 1})
+
+  " 設定終了
+  call dein#end()
+  call dein#save_state()
+endif
+
+" もし、未インストールものものがあったらインストール
+if dein#check_install()
+  call dein#install()
+endif
+"------------------------------------------------------------
+"jedi-vim
+autocmd FileType python setlocal completeopt-=preview
+autocmd FileType python setlocal omnifunc=jedi#completions
+let g:jedi#auto_vim_configuration = 0
+if !exists('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns = {}
+endif
+let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'
+"""""
+"------------------------------------------------------------
 "color
 set t_Co=256
 filetype plugin indent on
