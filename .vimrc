@@ -1,11 +1,6 @@
 "--------------------
 "" 基本的な設定
 "--------------------
-"python3設定
-let $PATH = "~/.pyenv/shims:".$PATH
-let $PYTHON3_DLL="/Users/YUTOKIMURA/.pyenv/versions/3.5.1/lib/libpython3.5m.dylib"
-set pythondll=/Users/YUTOKIMURA/.pyenv/versions/2.7.11/lib/libpython2.7.dylib
-
 "バックアップ設定
 set directory=$HOME/vimbackup/tmp
 set backupdir=$HOME/vimbackup/backupfile
