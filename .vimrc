@@ -1,6 +1,13 @@
 "--------------------
 "" 基本的な設定
 "--------------------
+"python設定
+let $PYTHONHOME=$HOME."/.pyenv/versions/2.7.11"
+set pythondll=$HOME/.pyenv/versions/2.7.11/lib/libpython2.7.dylib
+py import sys
+let $PYTHONHOME=$HOME."/.pyenv/versions/3.5.1"
+set pythonthreedll=$HOME/.pyenv/versions/3.5.1/lib/libpython3.5m.dylib
+py3 import sys
 "バックアップ設定
 set directory=$HOME/vimbackup/tmp
 set backupdir=$HOME/vimbackup/backupfile
