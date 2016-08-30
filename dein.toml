@@ -1,7 +1,7 @@
 [[plugins]]
 repo = 'Shougo/dein.vim'
 [[plugins]]
-#name = 'lang/python/compl-jedi'
 repo = 'davidhalter/jedi-vim'
+build = 'git submodule update --init'
 [[plugins]]
-repo = 'Shougo/neocomplete.vim'
+repo = 'JuliaLang/julia-vim'
