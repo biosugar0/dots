@@ -3,6 +3,8 @@
 "--------------------
 "python設定
 au! BufNewFile,BufRead *.jl setf julia
+"vimgrep
+autocmd QuickFixCmdPost *grep* cwindow
 "let $PATH = "~/.pyenv/shims:".$PATH
 "let $PYTHONHOME=$HOME."/.pyenv/versions/2.7.11"
 "set pythondll=$HOME/.pyenv/versions/2.7.11/lib/libpython2.7.dylib
