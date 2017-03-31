@@ -1,17 +1,8 @@
-"--------------------
-"" 基本的な設定
-"--------------------
-"python設定
+"python3 設定
+"julia-----
+let g:julia_latex_to_unicode = 0
 au! BufNewFile,BufRead *.jl setf julia
-"vimgrep
-autocmd QuickFixCmdPost *grep* cwindow
-"let $PATH = "~/.pyenv/shims:".$PATH
-"let $PYTHONHOME=$HOME."/.pyenv/versions/2.7.11"
-"set pythondll=$HOME/.pyenv/versions/2.7.11/lib/libpython2.7.dylib
-"py import sys
-"let $PYTHONHOME=$HOME."/.pyenv/versions/3.5.2"
-"set pythonthreedll=$HOME/.pyenv/versions/3.5.2/lib/libpython3.5m.dylib
-"py3 import sys
+let g:default_julia_versoin = "0.5"
 "バックアップ設定
 set directory=$HOME/vimbackup/tmp
 set backupdir=$HOME/vimbackup/backupfile
@@ -24,11 +15,13 @@ set cmdheight=2    " メッセージ表示欄を2行確保
 set showmatch      " 対応する括弧を強調表示
 set helpheight=999 " ヘルプを画面いっぱいに開く
 set list           " 不可視文字を表示
+set breakindent            " breakindent インデントされた行の折り返しを綺麗に
 " ノーマルモード時だけ ; と : を入れ替える
 nnoremap ; :
 nnoremap : ;
 " 不可視文字の表示記号指定
-set listchars=tab:▸\ ,eol:↲,extends:❯,precedes:❮
+set listchars=tab:>-,trail:-,nbsp:%,eol:↲,extends:❯,precedes:❮
+set encoding=utf-8
 "移動設定
 set backspace=indent,eol,start "Backspaceキーの影響範囲に制限を設けない
 set whichwrap=b,s,h,l,<,>,[,] "行頭行末の左右移動で行をまたぐ
@@ -79,46 +72,38 @@ nnoremap tt  <C-]> "飛ぶ」
 nnoremap tj  :<C-u>tag<CR>  " 「進む」
 nnoremap tk  :<C-u>pop<CR>  " 「戻る」
 nnoremap tl  :<C-u>tags<CR> " 履歴一覧
-"------------------------------------------------------
-""plugin設定
+"color
+colorscheme desert
+autocmd ColorScheme * highlight Constant ctermfg=207 
+set t_Co=256
+filetype plugin indent on
+syntax enable
+"プラグイン設定
 let g:jedi#force_py_version = 3
-"" ---------- dein.vim 設定 ----------
-"" ディレクトリ設定
-"" プラグインが実際にインストールされるディレクトリ
-let s:dein_dir = expand('~/.cache/dein')
-"" dein.vim 本体
+" dein settings {{{
+" dein自体の自動インストール
+let s:cache_home = empty($XDG_CACHE_HOME) ? expand('~/.cache') : $XDG_CACHE_HOME
+let s:dein_dir = s:cache_home . '/dein'
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
-let g:rc_dir = expand('~/.vim/rc')
-"" dein.vim がないときgit clone
-if &runtimepath !~# '/dein.vim'
-    if !isdirectory(s:dein_repo_dir)
-        execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
-    endif
-        execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
-    endif
-"" 設定開始
+if !isdirectory(s:dein_repo_dir)
+  call system('git clone https://github.com/Shougo/dein.vim ' . shellescape(s:dein_repo_dir))
+endif
+let &runtimepath = s:dein_repo_dir .",". &runtimepath
+" プラグイン読み込み＆キャッシュ作成
+let s:toml_file = fnamemodify(expand('<sfile>'), ':h').'/dein.toml'
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
-"
-"  " プラグインリストを収めた TOML ファイル
-  let s:toml      = g:rc_dir . '/dein.toml'
-  let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
-"
-"  " TOML を読み込み、キャッシュしておく
-  call dein#load_toml(s:toml,      {'lazy': 0})
-  call dein#load_toml(s:lazy_toml, {'lazy': 1})
-"
-"  " 設定終了
+  call dein#load_toml(s:toml_file)
   call dein#end()
   call dein#save_state()
 endif
-"
-"" もし、未インストールものものがあったらインストール
-if dein#check_install()
+" 不足プラグインの自動インストール
+if has('vim_starting') && dein#check_install()
   call dein#install()
 endif
-""------------------------------------------------------------
-""jedi-vim
+" }}}
+
+""jedi-vim設定
 autocmd FileType python setlocal completeopt-=preview
 autocmd FileType python setlocal omnifunc=jedi#completions
 let g:jedi#auto_vim_configuration = 0
@@ -130,17 +115,9 @@ let g:jedi#auto_initialization = 1
 let g:jedi#auto_vim_configuration = 1
 
 "  # 補完キーの設定この場合はCtrl+Space
-let g:jedi#completions_command = "<C-Space>"  
+let g:jedi#completions_command = "<C-c>"
 let g:jedi#goto_assignments_command = "<C-g>"   " 変数の宣言場所へジャンプ（Ctrl + g)
 let g:jedi#goto_definitions_command = "<C-d>"   " クラス、関数定義にジャンプ（Gtrl + d）
 let g:jedi#documentation_command = "<C-k>"      " Pydocを表示（Ctrl + k）
 let g:jedi#popup_select_first = 0
 let g:jedi#popup_on_dot = 0
-""""""
-""------------------------------------------------------------
-"color
-colorscheme desert
-autocmd ColorScheme * highlight Constant ctermfg=207 
-set t_Co=256
-filetype plugin indent on
-syntax enable   
