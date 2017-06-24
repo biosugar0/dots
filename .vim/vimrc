@@ -1,4 +1,9 @@
-"python3 設定
+"キーバインド
+inoremap <silent> jj <ESC>
+augroup SetShebang
+    autocmd! SetShebang
+    autocmd BufNewFile *.py 0r $HOME/.vim/template/python3.txt
+augroup END
 "julia-----
 let g:julia_latex_to_unicode = 0
 au! BufNewFile,BufRead *.jl setf julia
@@ -6,6 +11,10 @@ let g:default_julia_versoin = "0.5"
 "バックアップ設定
 set directory=$HOME/vimbackup/tmp
 set backupdir=$HOME/vimbackup/backupfile
+if has('persistent_undo')
+set undodir=$HOME/vimbackup/undo
+set undofile
+endif
 :set noundofile
 "画面設定
 set number         " 行番号を表示する
@@ -17,8 +26,8 @@ set helpheight=999 " ヘルプを画面いっぱいに開く
 set list           " 不可視文字を表示
 set breakindent            " breakindent インデントされた行の折り返しを綺麗に
 " ノーマルモード時だけ ; と : を入れ替える
-nnoremap ; :
-nnoremap : ;
+"nnoremap ; :
+"nnoremap : ;
 " 不可視文字の表示記号指定
 set listchars=tab:>-,trail:-,nbsp:%,eol:↲,extends:❯,precedes:❮
 set encoding=utf-8
@@ -67,6 +76,7 @@ set fileencoding=utf-8
 "オートコメントアウト無効
 au FileType * setlocal formatoptions-=ro
 
+"ctags
 nnoremap t  <Nop>
 nnoremap tt  <C-]> "飛ぶ」
 nnoremap tj  :<C-u>tag<CR>  " 「進む」
@@ -78,6 +88,7 @@ autocmd ColorScheme * highlight Constant ctermfg=207
 set t_Co=256
 filetype plugin indent on
 syntax enable
+"python3 設定
 "プラグイン設定
 let g:jedi#force_py_version = 3
 " dein settings {{{
@@ -121,3 +132,10 @@ let g:jedi#goto_definitions_command = "<C-d>"   " クラス、関数定義にジ
 let g:jedi#documentation_command = "<C-k>"      " Pydocを表示（Ctrl + k）
 let g:jedi#popup_select_first = 0
 let g:jedi#popup_on_dot = 0
+" カーソルを自動的に()の中へ
+imap {} {}<Left>
+imap [] []<Left>
+imap () ()<Left>
+imap "" ""<Left>
+imap '' ''<Left>
+imap <> <><Left>
