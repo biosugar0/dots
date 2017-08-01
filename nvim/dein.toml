@@ -1,0 +1,14 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+on_event = 'InsertCharPre'
+on_i = 1
+[[plugins]]
+repo = 'zchee/deoplete-jedi'
+
+[[plugins]]
+repo = 'cespare/vim-toml'
+[[plugins]]
+repo = 'fatih/vim-go'
