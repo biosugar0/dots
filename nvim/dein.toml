@@ -14,3 +14,5 @@ repo = 'cespare/vim-toml'
 repo = 'fatih/vim-go'
 [[plugins]]
 repo = 'zchee/deoplete-go'
+[[plugins]]
+repo = 'tell-k/vim-autopep8'
