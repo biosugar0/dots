@@ -16,3 +16,5 @@ repo = 'fatih/vim-go'
 repo = 'zchee/deoplete-go'
 [[plugins]]
 repo = 'tell-k/vim-autopep8'
+[[plugins]]
+repo = 'Yggdroot/indentLine'
