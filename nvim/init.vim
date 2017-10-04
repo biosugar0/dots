@@ -2,7 +2,6 @@
 let $XDG_CONFIG_HOME= $HOME."/.vim/"
 ""キーバインド
 inoremap <silent> jj <ESC>
-nnoremap <C-e> :!python3 % <CR>
 " 
 "-------補完設定
 set completeopt=menuone
@@ -15,13 +14,7 @@ let g:deoplete#enable_refresh_always = 0
 let g:deoplete#enable_smart_case = 1
 let g:deoplete#file#enable_buffer_path = 1
 let g:deoplete#max_list = 10000
-"inoremap <expr><tab> pumvisible() ? "\<C-n>" :
-"    \ neosnippet#expandable_or_jumpable() ?
-"    \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
-""julia-----
-"let g:julia_latex_to_unicode = 0
-"au! BufNewFile,BufRead *.jl setf julia
-"let g:default_julia_versoin = "0.6"
+
 ""バックアップ設定
 if isdirectory($HOME."/.vim/backup") == 0
     call mkdir($HOME."/.vim/backup") 
