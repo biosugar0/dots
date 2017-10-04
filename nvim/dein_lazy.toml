@@ -1,0 +1,2 @@
+[[plugins]]
+repo = 'tell-k/vim-autopep8'

@@ -82,10 +82,41 @@ set history=1000
 ""ビープ音すべてを無効にする
 set visualbell t_vb=
 set noerrorbells "エラーメッセージの表示時にビープを鳴らさない
+
 "" ステータス
-set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
-set statusline+=[%p%%]\ [LEN=%L]
-set laststatus=2 
+set showcmd
+"ステータスラインにコマンドを表示
+set showcmd
+"ステータスラインを常に表示
+set laststatus=2
+"ファイルナンバー表示
+set statusline=[%n]
+"ホスト名表示
+set statusline+=%{matchstr(hostname(),'\\w\\+')}@
+"ファイル名表示
+set statusline+=%<%F
+"変更のチェック表示
+set statusline+=%m
+"読み込み専用かどうか表示
+set statusline+=%r
+"ヘルプページなら[HELP]と表示
+set statusline+=%h
+"プレビューウインドウなら[Prevew]と表示
+set statusline+=%w
+"これ以降は右側
+set statusline+=%=
+"ファイルフォーマット表示
+"set statusline+=[%{&fileformat}]
+"文字コード表示
+"set statusline+=[%{has('multi_byte')&&\&fileencoding!=''?&fileencoding:&encoding}]
+"ファイルタイプ表示
+"set statusline+=%y
+" ファイル内の何％の位置にあるか
+set statusline+=%P
+" 現在行数/全行数
+set statusline+=[LOW=%l/%L]
+"git
+set statusline+=%{fugitive#statusline()}
 set fileencoding=utf-8
 ""オートコメントアウト無効
 au FileType * setlocal formatoptions-=ro
