@@ -2,7 +2,7 @@
 let $XDG_CONFIG_HOME= $HOME."/.vim/"
 ""キーバインド
 inoremap <silent> jj <ESC>
-" 
+"
 "-------補完設定
 set completeopt=menuone
 let g:deoplete#enable_at_startup = 1
@@ -17,7 +17,7 @@ let g:deoplete#max_list = 10000
 
 ""バックアップ設定
 if isdirectory($HOME."/.vim/backup") == 0
-    call mkdir($HOME."/.vim/backup") 
+    call mkdir($HOME."/.vim/backup")
 endif
 set directory=$HOME/.vim/backup
 set backupdir=$HOME/.vim/backup
@@ -77,39 +77,19 @@ set visualbell t_vb=
 set noerrorbells "エラーメッセージの表示時にビープを鳴らさない
 
 "" ステータス
-set showcmd
-"ステータスラインにコマンドを表示
-set showcmd
-"ステータスラインを常に表示
-set laststatus=2
-"ファイルナンバー表示
-set statusline=[%n]
-"ホスト名表示
-set statusline+=%{matchstr(hostname(),'\\w\\+')}@
-"ファイル名表示
-set statusline+=%<%F
-"変更のチェック表示
-set statusline+=%m
-"読み込み専用かどうか表示
-set statusline+=%r
-"ヘルプページなら[HELP]と表示
-set statusline+=%h
-"プレビューウインドウなら[Prevew]と表示
-set statusline+=%w
-"これ以降は右側
-set statusline+=%=
-"ファイルフォーマット表示
-"set statusline+=[%{&fileformat}]
-"文字コード表示
-"set statusline+=[%{has('multi_byte')&&\&fileencoding!=''?&fileencoding:&encoding}]
-"ファイルタイプ表示
-"set statusline+=%y
-" ファイル内の何％の位置にあるか
-set statusline+=%P
-" 現在行数/全行数
-set statusline+=[LOW=%l/%L]
-"git
-set statusline+=%{fugitive#statusline()}
+" カラーテーマ指定してかっこよく
+let g:airline_theme = 'badwolf'
+" タブバーをかっこよく
+let g:airline#extensions#tabline#enabled = 1
+" virtulenvを認識しているか確認用に、現在activateされているvirtualenvを表示(vim-virtualenvの拡張)
+let g:airline#extensions#virtualenv#enabled = 1
+" gitのHEADから変更した行の+-を非表示(vim-gitgutterの拡張)
+let g:airline#extensions#hunks#enabled = 0
+" Lintツールによるエラー、警告を表示(ALEの拡張)
+let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#ale#error_symbol = 'E:'
+let g:airline#extensions#ale#warning_symbol = 'W:'
+
 set fileencoding=utf-8
 ""オートコメントアウト無効
 au FileType * setlocal formatoptions-=ro
@@ -181,7 +161,7 @@ imap <> <><Left>
 
 ""color
 colorscheme desert
-autocmd ColorScheme * highlight Constant ctermfg=207 
+autocmd ColorScheme * highlight Constant ctermfg=207
 set t_Co=256
 filetype plugin indent on
 syntax enable
@@ -212,5 +192,6 @@ function! Autopep8()
     call Preserve(':silent %!autopep8 -')
 endfunction
 
-" Shift + F で自動修正
+"保存時の設定
 autocmd BufWrite *.{py} :call Autopep8()
+autocmd BufWritePre * :%s/\s\+$//ge

@@ -20,3 +20,7 @@ repo = 'Yggdroot/indentLine'
 repo = 'tpope/vim-fugitive'
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets'
+[[plugins]]
+repo = 'vim-airline/vim-airline'
+[[plugins]]
+repo = 'vim-airline/vim-airline-themes'
