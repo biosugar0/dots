@@ -18,3 +18,5 @@ repo = 'zchee/deoplete-go'
 repo = 'Yggdroot/indentLine'
 [[plugins]]
 repo = 'tpope/vim-fugitive'
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
