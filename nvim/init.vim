@@ -1,10 +1,8 @@
+"setting dir
+let $XDG_CONFIG_HOME= $HOME."/.vim/"
 ""キーバインド
 inoremap <silent> jj <ESC>
 nnoremap <C-e> :!python3 % <CR>
-augroup SetShebang
-    autocmd! SetShebang
-    autocmd BufNewFile *.py 0r $HOME/.vim/template/python3.txt
-augroup END
 " 
 "-------補完設定
 set completeopt=menuone
@@ -25,12 +23,16 @@ let g:deoplete#max_list = 10000
 "au! BufNewFile,BufRead *.jl setf julia
 "let g:default_julia_versoin = "0.6"
 ""バックアップ設定
-set directory=$HOME/vimbackup/tmp
-set backupdir=$HOME/vimbackup/backupfile
-if has('persistent_undo')
-set undodir=$HOME/vimbackup/undo
-set undofile
+if isdirectory($HOME."/.vim/backup") == 0
+    call mkdir($HOME."/.vim/backup") 
 endif
+set directory=$HOME/.vim/backup
+set backupdir=$HOME/.vim/backup
+if has('persistent_undo')
+    set undodir=$HOME/.vim/backup
+    set undofile
+endif
+
 ""画面設定
 set number         " 行番号を表示する
 set cursorline     " カーソル行の背景色を変える
@@ -110,11 +112,23 @@ if &runtimepath !~# '/dein.vim'
 endif
 
 "" 設定開始
+
+if isdirectory($HOME."/.vim/nvim") == 0
+    call mkdir($HOME."/.vim/nvim")
+endif
+if filereadable($HOME."/.vim/nvim/"."dein.toml") == 0
+    execute "redir > ".$HOME."/.vim/nvim/"."dein.toml"
+endif
+if filereadable($HOME."/.vim/nvim/"."dein_lazy.toml") == 0
+    execute "redir > ".$HOME."/.vim/nvim/"."dein.toml"
+endif
+
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
 
   " プラグインリストを収めた TOML ファイル
   " 予め TOML ファイルを用意しておく
+
   let g:rc_dir    = expand("~/.vim/nvim")
   let s:toml      = g:rc_dir . '/dein.toml'
   let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
