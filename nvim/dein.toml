@@ -12,3 +12,5 @@ repo = 'zchee/deoplete-jedi'
 repo = 'cespare/vim-toml'
 [[plugins]]
 repo = 'fatih/vim-go'
+[[plugins]]
+repo = 'zchee/deoplete-go'
