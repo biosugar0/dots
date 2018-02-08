@@ -4,6 +4,8 @@ let $XDG_CONFIG_HOME= $HOME."/.vim/"
 inoremap <silent> jj <ESC>
 "
 "-------補完設定
+let g:neomake_python_enabled_makers = ['python3', 'flake8', 'mypy']
+let g:python3_host_prog = '/usr/local/bin/python3'
 set completeopt=menuone
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#auto_complete_delay = 0
@@ -15,6 +17,32 @@ let g:deoplete#enable_smart_case = 1
 let g:deoplete#file#enable_buffer_path = 1
 let g:deoplete#max_list = 10000
 
+" ----- neovimhaskell/haskell-vim -----
+
+" Align 'then' two spaces after 'if'
+let g:haskell_indent_if = 2
+" Indent 'where' block two spaces under previous body
+let g:haskell_indent_before_where = 2
+" Allow a second case indent style (see haskell-vim README)
+let g:haskell_indent_case_alternative = 1
+" Only next under 'let' if there's an equals sign
+let g:haskell_indent_let_no_in = 0
+
+" ----- hindent & stylish-haskell -----
+
+" Indenting on save is too aggressive for me
+let g:hindent_on_save = 0
+
+" Helper function, called below with mappings
+function! HaskellFormat(which) abort
+  if a:which ==# 'hindent' || a:which ==# 'both'
+    :Hindent
+  endif
+  if a:which ==# 'stylish' || a:which ==# 'both'
+    silent! exe 'undojoin'
+    silent! exe 'keepjumps %!stylish-haskell'
+  endif
+endfunction
 ""バックアップ設定
 if isdirectory($HOME."/.vim/backup") == 0
     call mkdir($HOME."/.vim/backup")
@@ -27,6 +55,10 @@ if has('persistent_undo')
 endif
 
 ""画面設定
+augroup vimrcEx
+  au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
+  \ exe "normal g`\"" | endif
+augroup END
 set number         " 行番号を表示する
 set cursorline     " カーソル行の背景色を変える
 set laststatus=2   " ステータス行を常に表示
@@ -160,7 +192,7 @@ imap '' ''<Left>
 imap <> <><Left>
 
 ""color
-colorscheme desert
+"colorscheme desert
 autocmd ColorScheme * highlight Constant ctermfg=207
 set t_Co=256
 filetype plugin indent on

@@ -1,13 +1,11 @@
 [[plugins]]
 repo = 'Shougo/dein.vim'
-
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
 on_event = 'InsertCharPre'
 on_i = 1
 [[plugins]]
 repo = 'zchee/deoplete-jedi'
-
 [[plugins]]
 repo = 'cespare/vim-toml'
 [[plugins]]
@@ -28,3 +26,16 @@ repo = 'vim-airline/vim-airline-themes'
 repo = 'airblade/vim-gitgutter'
 [[plugins]]
 repo = 'Vimjas/vim-python-pep8-indent'
+[[plugins]]
+repo = 'neomake/neomake'
+if = "has('nvim')"
+hook_add = '''
+autocmd! BufEnter,BufWritePost * Neomake
+let g:neomake_python_enabled_makers = ['python', 'flake8', 'mypy']
+'''
+[[plugins]]
+repo = 'JuliaEditorSupport/julia-vim'
+[[plugins]]
+repo = 'neovimhaskell/haskell-vim'
+[[plugins]]
+repo = 'alx741/vim-hindent'
