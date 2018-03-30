@@ -39,6 +39,3 @@ repo = 'JuliaEditorSupport/julia-vim'
 repo = 'neovimhaskell/haskell-vim'
 [[plugins]]
 repo = 'alx741/vim-hindent'
-[[plugins]]
-repo = 'biosugar0/singularity-vim'
-rev = "snippets"
