@@ -3,7 +3,11 @@ let $XDG_CONFIG_HOME= $HOME."/.vim/"
 ""キーバインド
 inoremap <silent> jj <ESC>
 "
+
+set runtimepath+=$XDG_CONFIG_HOME/nvim/rplugin
+set runtimepath+=~/.config/nvim/plugins/deoplete.nvim
 "-------補完設定
+setlocal isfname-== isfname+=32
 let g:neomake_python_enabled_makers = ['python3', 'flake8', 'mypy']
 let g:python3_host_prog = '/usr/local/bin/python3'
 set completeopt=menuone
