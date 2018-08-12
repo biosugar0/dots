@@ -123,6 +123,9 @@ let g:airline#extensions#hunks#enabled = 0
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#ale#error_symbol = 'E:'
 let g:airline#extensions#ale#warning_symbol = 'W:'
+let g:ale_fixers = {'python': ['autopep8', 'isort','yapf']}
+let g:ale_linters = {'python': ['pycodestyle', 'pyflakes']}
+let g:ale_fix_on_save = 1
 
 set fileencoding=utf-8
 ""オートコメントアウト無効
@@ -199,32 +202,32 @@ autocmd ColorScheme * highlight Constant ctermfg=207
 set t_Co=256
 filetype plugin indent on
 syntax enable
-
-"autopep8
-function! Preserve(command)
-    " Save the last search.
-    let search = @/
-    " Save the current cursor position.
-    let cursor_position = getpos('.')
-    " Save the current window position.
-    normal! H
-    let window_position = getpos('.')
-    call setpos('.', cursor_position)
-    " Execute the command.
-    execute a:command
-    " Restore the last search.
-    let @/ = search
-    " Restore the previous window position.
-    call setpos('.', window_position)
-    normal! zt
-    " Restore the previous cursor position.
-    call setpos('.', cursor_position)
-endfunction
-
-function! Autopep8()
-    call Preserve(':silent %!autopep8 -')
-endfunction
-
-"保存時の設定
-autocmd BufWrite *.{py} :call Autopep8()
-autocmd BufWritePre * :%s/\s\+$//ge
+"
+""autopep8
+"function! Preserve(command)
+"    " Save the last search.
+"    let search = @/
+"    " Save the current cursor position.
+"    let cursor_position = getpos('.')
+"    " Save the current window position.
+"    normal! H
+"    let window_position = getpos('.')
+"    call setpos('.', cursor_position)
+"    " Execute the command.
+"    execute a:command
+"    " Restore the last search.
+"    let @/ = search
+"    " Restore the previous window position.
+"    call setpos('.', window_position)
+"    normal! zt
+"    " Restore the previous cursor position.
+"    call setpos('.', cursor_position)
+"endfunction
+"
+"function! Autopep8()
+"    call Preserve(':silent %!autopep8 -')
+"endfunction
+"
+""保存時の設定
+"autocmd BufWrite *.{py} :call Autopep8()
+"autocmd BufWritePre * :%s/\s\+$//ge

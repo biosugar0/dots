@@ -27,11 +27,7 @@ repo = 'airblade/vim-gitgutter'
 [[plugins]]
 repo = 'Vimjas/vim-python-pep8-indent'
 [[plugins]]
-repo = 'scrooloose/syntastic'
-if = "has('nvim')"
-hook_add = '''
-let g:syntastic_python_checkers = ['pydocstyle', 'pycodestyle', 'pyflakes']
-'''
+repo = 'w0rp/ale'
 [[plugins]]
 repo = 'JuliaEditorSupport/julia-vim'
 [[plugins]]
