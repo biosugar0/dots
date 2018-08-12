@@ -8,9 +8,8 @@ set runtimepath+=$XDG_CONFIG_HOME/nvim/rplugin
 set runtimepath+=~/.config/nvim/plugins/deoplete.nvim
 "-------補完設定
 setlocal isfname-== isfname+=32
-"let g:python3_host_prog = '/Users/ice/.pyenv/shims/python3'
-let g:python3_host_prog = '/usr/local/bin/python3'
-let g:python_host_prog = '/usr/local/bin/python'
+"let g:python3_host_prog = '/usr/local/bin/python3'
+"let g:python_host_prog = '/usr/local/bin/python'
 set completeopt=menuone
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#auto_complete_delay = 0
