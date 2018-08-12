@@ -27,11 +27,10 @@ repo = 'airblade/vim-gitgutter'
 [[plugins]]
 repo = 'Vimjas/vim-python-pep8-indent'
 [[plugins]]
-repo = 'neomake/neomake'
+repo = 'scrooloose/syntastic'
 if = "has('nvim')"
 hook_add = '''
-autocmd! BufEnter,BufWritePost * Neomake
-let g:neomake_python_enabled_makers = ['python', 'flake8', 'mypy']
+let g:syntastic_python_checkers = ['pydocstyle', 'pycodestyle', 'pyflakes']
 '''
 [[plugins]]
 repo = 'JuliaEditorSupport/julia-vim'

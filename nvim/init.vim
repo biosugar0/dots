@@ -8,8 +8,9 @@ set runtimepath+=$XDG_CONFIG_HOME/nvim/rplugin
 set runtimepath+=~/.config/nvim/plugins/deoplete.nvim
 "-------補完設定
 setlocal isfname-== isfname+=32
-let g:neomake_python_enabled_makers = ['python3', 'flake8', 'mypy']
+"let g:python3_host_prog = '/Users/ice/.pyenv/shims/python3'
 let g:python3_host_prog = '/usr/local/bin/python3'
+let g:python_host_prog = '/usr/local/bin/python'
 set completeopt=menuone
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#auto_complete_delay = 0
@@ -113,10 +114,7 @@ set visualbell t_vb=
 set noerrorbells "エラーメッセージの表示時にビープを鳴らさない
 
 "" ステータス
-" カラーテーマ指定してかっこよく
 let g:airline_theme = 'badwolf'
-" タブバーをかっこよく
-"let g:airline#extensions#tabline#enabled = 1
 " virtulenvを認識しているか確認用に、現在activateされているvirtualenvを表示(vim-virtualenvの拡張)
 let g:airline#extensions#virtualenv#enabled = 1
 " gitのHEADから変更した行の+-を非表示(vim-gitgutterの拡張)
@@ -201,7 +199,6 @@ autocmd ColorScheme * highlight Constant ctermfg=207
 set t_Co=256
 filetype plugin indent on
 syntax enable
-syntax on
 
 "autopep8
 function! Preserve(command)
