@@ -30,7 +30,3 @@ repo = 'Vimjas/vim-python-pep8-indent'
 repo = 'w0rp/ale'
 [[plugins]]
 repo = 'JuliaEditorSupport/julia-vim'
-[[plugins]]
-repo = 'neovimhaskell/haskell-vim'
-[[plugins]]
-repo = 'alx741/vim-hindent'
