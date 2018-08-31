@@ -2,5 +2,5 @@
 
 dotファイル系の設定ファイル
 
-* vimrc
+* init.vim
 * tmuxrc
