@@ -1,5 +1,7 @@
-""キーバインド
+"set config dir
 let $XDG_CONFIG_HOME = $HOME."/.config"
+
+""キーバインド
 "jjをescに
 inoremap <silent> jj <ESC>
 "
