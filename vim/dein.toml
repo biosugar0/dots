@@ -1,7 +1,0 @@
-[[plugins]]
-repo = 'Shougo/dein.vim'
-[[plugins]]
-repo = 'davidhalter/jedi-vim'
-build = 'git submodule update --init'
-[[plugins]]
-repo = 'JuliaLang/julia-vim'
