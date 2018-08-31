@@ -1,5 +1,3 @@
-"setting dir
-let $XDG_CONFIG_HOME= $HOME."/.vim/"
 ""キーバインド
 "jjをescに
 inoremap <silent> jj <ESC>
