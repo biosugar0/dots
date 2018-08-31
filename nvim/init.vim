@@ -1,4 +1,5 @@
 ""キーバインド
+let $XDG_CONFIG_HOME = $HOME."/.config"
 "jjをescに
 inoremap <silent> jj <ESC>
 "
@@ -21,13 +22,13 @@ let g:deoplete#file#enable_buffer_path = 1
 let g:deoplete#max_list = 10000
 
 ""バックアップ設定
-if isdirectory($HOME."/.vim/backup") == 0
-    call mkdir($HOME."/.vim/backup")
+if isdirectory($XDG_CONFIG_HOME."/nvim/backup") == 0
+    call mkdir($XDG_CONFIG_HOME."/nvim/backup")
 endif
-set directory=$HOME/.vim/backup
-set backupdir=$HOME/.vim/backup
+set directory=$XDG_CONFIG_HOME/nvim/backup
+set backupdir=$XDG_CONFIG_HOME/nvim/backup
 if has('persistent_undo')
-    set undodir=$HOME/.vim/backup
+    set undodir=$XDG_CONFIG_HOME/nvim/backup
     set undofile
 endif
 
