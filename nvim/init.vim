@@ -131,14 +131,14 @@ endif
 
 "" 設定開始
 
-if isdirectory($HOME."/.vim/nvim") == 0
-    call mkdir($HOME."/.vim/nvim")
+if isdirectory($XDG_CONFIG_HOME."/nvim") == 0
+    call mkdir($XDG_CONFIG_HOME."/nvim")
 endif
-if filereadable($HOME."/.vim/nvim/"."dein.toml") == 0
-    execute "redir > ".$HOME."/.vim/nvim/"."dein.toml"
+if filereadable($XDG_CONFIG_HOME."/nvim/"."dein.toml") == 0
+    execute "redir > ".$XDG_CONFIG_HOME."/nvim/"."dein.toml"
 endif
-if filereadable($HOME."/.vim/nvim/"."dein_lazy.toml") == 0
-    execute "redir > ".$HOME."/.vim/nvim/"."dein.toml"
+if filereadable($XDG_CONFIG_HOME."/nvim/"."dein_lazy.toml") == 0
+    execute "redir > ".$XDG_CONFIG_HOME."/nvim/"."dein_lazy.toml"
 endif
 
 if dein#load_state(s:dein_dir)
@@ -147,7 +147,7 @@ if dein#load_state(s:dein_dir)
   " プラグインリストを収めた TOML ファイル
   " 予め TOML ファイルを用意しておく
 
-  let g:rc_dir    = expand("~/.vim/nvim")
+  let g:rc_dir    = expand($XDG_CONFIG_HOME."/nvim")
   let s:toml      = g:rc_dir . '/dein.toml'
   let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
 "
