@@ -1,3 +1,5 @@
+let g:python3_host_prog = '/usr/local/bin/python3'
+
 "set config dir
 let $XDG_CONFIG_HOME = $HOME."/.config"
 
@@ -22,6 +24,27 @@ let g:deoplete#enable_refresh_always = 0
 let g:deoplete#enable_smart_case = 1
 let g:deoplete#file#enable_buffer_path = 1
 let g:deoplete#max_list = 10000
+
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:lsp_async_completion = 1
+
+let mapleader = "\<Space>"
+if executable('golsp')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'golsp',
+        \ 'cmd': {server_info->['golsp', '-mode', 'stdio']},
+        \ 'whitelist': ['go'],
+        \ })
+endif
+
+"nmap <silent> <Leader>d :LspDefinition<CR>
+"nmap <silent> <Leader>p :LspHover<CR>
+"nmap <silent> <Leader>r :LspReferences<CR>
+"nmap <silent> <Leader>i :LspImplementation<CR>
+"nmap <silent> <Leader>s :split \| :LspDefinition <CR>
+"nmap <silent> <Leader>v :vsplit \| :LspDefinition <CR>
+
 
 ""バックアップ設定
 if isdirectory($XDG_CONFIG_HOME."/nvim/backup") == 0

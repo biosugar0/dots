@@ -6,10 +6,18 @@ on_event = 'InsertCharPre'
 on_i = 1
 [[plugins]]
 repo = 'zchee/deoplete-jedi'
+hook_add = '''
+    let g:deoplete#sources#jedi#python_path = '/usr/local/bin/python3.7'
+'''
 [[plugins]]
 repo = 'cespare/vim-toml'
 [[plugins]]
 repo = 'fatih/vim-go'
+hook_add = '''
+  let g:go_fmt_command = "goimports"
+  let g:go_def_mapping_enabled = 0
+  let g:go_doc_keywordprg_enabled = 0
+'''
 [[plugins]]
 repo = 'zchee/deoplete-go'
 [[plugins]]
@@ -29,4 +37,12 @@ repo = 'Vimjas/vim-python-pep8-indent'
 [[plugins]]
 repo = 'w0rp/ale'
 [[plugins]]
-repo = 'JuliaEditorSupport/julia-vim'
+repo = 'prabirshrestha/async.vim'
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp'
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete.vim'
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-lsp.vim'
+[[plugins]]
+repo = 'natebosch/vim-lsc'
