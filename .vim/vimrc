@@ -32,6 +32,12 @@ set shell=zsh
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
+"ファイルをひらいたとき最後にカーソルがあった場所に移動
+augroup vimrcEx
+  au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
+  \ exe "normal g`\"" | endif
+augroup END
+
 
 
 set number         " 行番号を表示する
@@ -43,7 +49,7 @@ set helpheight=999 " ヘルプを画面いっぱいに開く
 set list           " 不可視文字を表示
 set breakindent            " インデントされた行の折り返しを綺麗に
 "" 不可視文字の表示記号指定
-set listchars=tab:>-,trail:-,nbsp:%,eol:↲,extends:❯,precedes:❮
+set listchars=tab:..,trail:-,nbsp:%,eol:↲,extends:❯,precedes:❮
 ""移動設定
 set backspace=indent,eol,start "Backspaceキーの影響範囲に制限を設けない
 set whichwrap=b,s,h,l,<,>,[,] "行頭行末の左右移動で行をまたぐ
@@ -72,7 +78,7 @@ set smartindent "改行時に入力された行の末尾に合わせて次の行
 set clipboard=unnamed,unnamedplus
 "" マウスの入力を受け付ける
 set mouse=
-""コマンドライン関連
+    ""コマンドライン関連
 "" コマンドラインモードでTABキーによるファイル名補完を有効にする
 set wildmenu wildmode=list:longest,full
 "" コマンドラインの履歴を1000件保存する
@@ -82,6 +88,13 @@ set visualbell t_vb=
 set fileencoding=utf-8
 ""オートコメントアウト無効
 au FileType * setlocal formatoptions-=ro
+
+"" ステータス
+let g:airline_theme = 'badwolf'
+" virtulenvを認識しているか確認用に、現在activateされているvirtualenvを表示(vim-virtualenvの拡張)
+let g:airline#extensions#virtualenv#enabled = 1
+" gitのHEADから変更した行の+-を非表示(vim-gitgutterの拡張)
+let g:airline#extensions#hunks#enabled = 0
 
 ""color
 syntax enable
