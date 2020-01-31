@@ -14,3 +14,4 @@ imap '' ''<Left>
 imap <> <><Left>
 imap `` ``<Left>
 let mapleader = ","
+nnoremap <leader>c :s/_\(.\)/\u\1/g<CR>
