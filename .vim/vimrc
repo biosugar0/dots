@@ -29,9 +29,6 @@ let g:loaded_2html_plugin       = 1
 set isfname-== isfname+=32
 set shell=zsh
 
-" Highlight VCS conflict markers
-match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
-
 "ファイルをひらいたとき最後にカーソルがあった場所に移動
 augroup vimrcEx
   au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -79,7 +76,7 @@ set smartindent "改行時に入力された行の末尾に合わせて次の行
 set clipboard=unnamed,unnamedplus
 "" マウスの入力を受け付ける
 set mouse=
-    ""コマンドライン関連
+""コマンドライン関連
 "" コマンドラインモードでTABキーによるファイル名補完を有効にする
 set wildmenu wildmode=list:longest,full
 "" コマンドラインの履歴を1000件保存する
@@ -98,15 +95,18 @@ let g:airline#extensions#virtualenv#enabled = 1
 let g:airline#extensions#hunks#enabled = 0
 
 ""color
-syntax enable
-colorscheme desert
-autocmd ColorScheme * highlight Constant ctermfg=207
-autocmd FileType vue syntax sync fromstart
+syntax on
+colo Tomorrow-Night-Bright  "default
+autocmd! BufEnter,BufNewFile *.go colo Tomorrow-Night-Bright
+autocmd! BufLeave *.go colo Tomorrow-Night-Bright
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_functions = 1
+"autocmd ColorScheme * highlight Constant ctermfg=207
 set t_Co=256
 filetype plugin indent on
 autocmd FileType js  setlocal sw=2 sts=2 ts=2 et
 autocmd FileType vue  setlocal sw=2 sts=2 ts=2 et
-
 
 
 ""バックアップ設定
@@ -167,6 +167,5 @@ call minpac#add('k-takata/minpac', {'type': 'opt'})
 " 各種設定の読み込み
 call map(sort(split(globpath(&runtimepath, '_config/*.vim'))), {->[execute('exec "so" v:val')]})
 
-" 不可視文字を目立たない色に
 hi NonText    ctermfg=59
 hi SpecialKey ctermfg=59

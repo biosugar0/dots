@@ -12,3 +12,5 @@ imap () ()<Left>
 imap "" ""<Left>
 imap '' ''<Left>
 imap <> <><Left>
+imap `` ``<Left>
+let mapleader = ","
