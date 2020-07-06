@@ -75,23 +75,23 @@ shell:
   args:
     - --login
 key_bindings:
-  - { key: Key0,   mods: Command,         action: ResetFontSize    }
-  - { key: Equals, mods: Command,         action: IncreaseFontSize }
-  - { key: Add,    mods: Command,         action: IncreaseFontSize }
-  - { key: Minus,  mods: Command,         action: DecreaseFontSize }
-  - { key: K,      mods: Command,         action: ClearHistory     }
-  - { key: K,      mods: Command,         chars: "\x0c"            }
-  - { key: V,      mods: Command,         action: Paste            }
-  - { key: C,      mods: Command,         action: Copy             }
-  - { key: H,      mods: Command,         action: Hide             }
-  - { key: M,      mods: Command,         action: Minimize         }
-  - { key: Q,      mods: Command,         action: Quit             }
-  - { key: W,      mods: Command,         action: Quit             }
-  - { key: Return,      mods: Command|Control, action: ToggleFullscreen }
-  - { key: Paste,                    action: Paste                            }
-  - { key: Copy,                     action: Copy                             }
-  - { key: L,         mods: Control, action: ClearLogNotice                   }
-  - { key: L,         mods: Control, chars: "\x0c"                            }
+  - { key: Key0,       mods: Command,         action: ResetFontSize    }
+  - { key: Equals,     mods: Command,         action: IncreaseFontSize }
+  - { key: Add,        mods: Command,         action: IncreaseFontSize }
+  - { key: Minus,      mods: Command,         action: DecreaseFontSize }
+  - { key: K,          mods: Command,         action: ClearHistory     }
+  - { key: K,          mods: Command,         chars: "\x0c"            }
+  - { key: V,          mods: Command,         action: Paste            }
+  - { key: C,          mods: Command,         action: Copy             }
+  - { key: H,          mods: Command,         action: Hide             }
+  - { key: M,          mods: Command,         action: Minimize         }
+  - { key: Q,          mods: Command,         action: Quit             }
+  - { key: W,          mods: Command,         action: Quit             }
+  - { key: Return,      mods: Command,        action: ToggleFullscreen }
+  - { key: Paste,                             action: Paste            }
+  - { key: Copy,                              action: Copy             }
+  - { key: L,         mods: Control,  chars: "\x0c"                          }
+  - { key: L,         mods: Control, action: ClearLogNotice                  }
   - { key: PageUp,   mods: Shift,   action: ScrollPageUp,   mode: ~Alt       }
   - { key: PageUp,   mods: Shift,   chars: "\x1b[5;2~",     mode: Alt        }
   - { key: PageUp,   mods: Control, chars: "\x1b[5;5~"                       }
@@ -102,5 +102,5 @@ key_bindings:
   - { key: PageDown, mods: Control, chars: "\x1b[6;5~"                       }
   - { key: PageDown, mods: Alt,     chars: "\x1b[6;3~"                       }
   - { key: PageDown,                chars: "\x1b[6~"                         }
-  - { key: Home,      mods: Shift,   action: ScrollToTop,    mode: ~Alt       }
-  - { key: End,       mods: Shift,   action: ScrollToBottom, mode: ~Alt       }
+  - { key: Home,      mods: Shift,   action: ScrollToTop,    mode: ~Alt      }
+  - { key: End,       mods: Shift,   action: ScrollToBottom, mode: ~Alt      }
